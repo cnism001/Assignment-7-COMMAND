@@ -26,12 +26,23 @@ namespace Assignment_7_COMMAND
 
             // Composite command example (Turn off light and decrease temperature)
             CompositeCommand nightMode = new CompositeCommand();
+            
             nightMode.Add(new TurnOffLightCommand(light));
             nightMode.Add(new DecreaseTemperatureCommand(thermostat));
             remote.SetCommand(5, nightMode,"Turn the light off and decrease temperature");
 
             // Assign the display statu  to button 6
             remote.SetCommand(6, displayStatus, "Display current light and thermostate status");
+
+            // New test command for button 7
+            CompositeCommand daymode = new CompositeCommand();
+            daymode.Add(new TurnOnLightCommand(light));
+            daymode.Add(new IncreaseTemperatureCommand(thermostat));
+            daymode.Add(new IncreaseTemperatureCommand(thermostat));
+            daymode.Add(new IncreaseTemperatureCommand(thermostat));
+            daymode.Add(new IncreaseTemperatureCommand(thermostat));
+            daymode.Add(new IncreaseTemperatureCommand(thermostat));
+            remote.SetCommand(7, daymode, "Turn the lights on and increase temperature by 5");
 
             // Display the menu
             remote.DisplayMenu();

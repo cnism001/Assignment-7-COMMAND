@@ -54,7 +54,10 @@ namespace Assignment_7_COMMAND
             Console.WriteLine("Remote Controller Menu:");
             for (int i = 1; i < descriptions.Length; i++)
             {
-                Console.WriteLine($" {i}: {descriptions[i]}");
+                if (commands[i] != null) // Check if the command is assigned
+                {
+                    Console.WriteLine($" {i}: {descriptions[i]}");
+                }
             }
         }
     }
