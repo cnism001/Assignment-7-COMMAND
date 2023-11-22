@@ -19,20 +19,22 @@ namespace Assignment_7_COMMAND
             RemoteController remote = new RemoteController();
 
             // Setting up commands for invoker
-            remote.SetCommand(1, new TurnOnLightCommand(light));
-            remote.SetCommand(2, new TurnOffLightCommand(light));
-
-            remote.SetCommand(3, new IncreaseTemperatureCommand(thermostat));
-            remote.SetCommand(4, new DecreaseTemperatureCommand(thermostat));
+            remote.SetCommand(1, new TurnOnLightCommand(light), "Turn the light on");
+            remote.SetCommand(2, new TurnOffLightCommand(light), "Turn the light off");
+            remote.SetCommand(3, new IncreaseTemperatureCommand(thermostat), "Increase temperature");
+            remote.SetCommand(4, new DecreaseTemperatureCommand(thermostat), "Decrease temperature");
 
             // Composite command example (Turn off light and decrease temperature)
             CompositeCommand nightMode = new CompositeCommand();
             nightMode.Add(new TurnOffLightCommand(light));
             nightMode.Add(new DecreaseTemperatureCommand(thermostat));
-            remote.SetCommand(5, nightMode);
+            remote.SetCommand(5, nightMode,"Turn the light off and decrease temperature");
 
             // Assign the display statu  to button 6
-            remote.SetCommand(6, displayStatus);
+            remote.SetCommand(6, displayStatus, "Display current light and thermostate status");
+
+            // Display the menu
+            remote.DisplayMenu();
 
             // Main loop
             while (true)
