@@ -13,7 +13,8 @@ namespace Assignment_7_COMMAND
             // Creating instances of receivers
             Light light = new Light();
             Thermostat thermostat = new Thermostat();
-
+            // Instantiate the display status 
+            ICommand displayStatus = new DisplayStatusCommand(light, thermostat);
             // Creating instance of the invoker
             RemoteController remote = new RemoteController();
 
@@ -30,7 +31,9 @@ namespace Assignment_7_COMMAND
             nightMode.Add(new DecreaseTemperatureCommand(thermostat));
             remote.SetCommand(5, nightMode);
 
-            
+            // Assign the display statu  to button 6
+            remote.SetCommand(6, displayStatus);
+
             // Main loop
             while (true)
             {
@@ -44,10 +47,12 @@ namespace Assignment_7_COMMAND
                 if (commandNumber == 0) break; 
 
                 remote.PressButton(commandNumber);
-
                 
-            }
 
+            }
+            // Display the status receivers after exiting the loop
+            Console.WriteLine($"Light status: {(light.IsOn ? "On" : "Off")}");
+            Console.WriteLine($"Thermostat temperature: {thermostat.CurrentTemperature}");
         }
     }
 }

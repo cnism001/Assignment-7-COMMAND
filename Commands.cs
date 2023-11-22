@@ -60,6 +60,7 @@ namespace Assignment_7_COMMAND
             thermostat.IncreaseTemperature();
         }
     }
+
     // Command to decrease the temperature of thermostat, same logic as with increase 
     public class DecreaseTemperatureCommand : ICommand
     {
@@ -75,6 +76,7 @@ namespace Assignment_7_COMMAND
             thermostat.DecreaseTemperature();
         }
     }
+
     // CompositeCommand class allows for executing multiple commands at once
     public class CompositeCommand : ICommand
     {
@@ -94,6 +96,27 @@ namespace Assignment_7_COMMAND
             {
                 command.Execute();
             }
+        }
+    }
+
+    // Command for a receiver status display
+    public class DisplayStatusCommand : ICommand
+    {
+        private Light light;
+        private Thermostat thermostat;
+
+        public DisplayStatusCommand(Light light, Thermostat thermostat)
+        {   
+            // Light receiver
+            this.light = light;
+            // Thermostat receiver
+            this.thermostat = thermostat;
+        }
+
+        public void Execute()
+        {
+            Console.WriteLine($"Light status: {(light.IsOn ? "On" : "Off")}");
+            Console.WriteLine($"Thermostat temperature: {thermostat.CurrentTemperature}");
         }
     }
 
