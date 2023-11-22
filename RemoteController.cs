@@ -38,6 +38,8 @@ namespace Assignment_7_COMMAND
                 Console.WriteLine("No command assigned to this button");
             }
         }
+        // Property to get the number of command slots for main menu
+        public int CommandCount => commands.Length;
     }
 
 }
