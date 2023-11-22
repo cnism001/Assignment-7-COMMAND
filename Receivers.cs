@@ -36,6 +36,7 @@ namespace Assignment_7_COMMAND
         // Method to increase the temperature
         public void IncreaseTemperature()
         {
+            //increase by 1
             CurrentTemperature++;
             Console.WriteLine("Temperature increased to "+ CurrentTemperature);
         }
@@ -43,6 +44,7 @@ namespace Assignment_7_COMMAND
         // Method to decrease the temperature
         public void DecreaseTemperature()
         {
+            //decrease by 1
             CurrentTemperature--;
             Console.WriteLine("Temperature decreased to " + CurrentTemperature);
         }

@@ -52,6 +52,7 @@ namespace Assignment_7_COMMAND
         public void DisplayMenu()
         {
             Console.WriteLine("Remote Controller Menu:");
+            //count starts from 1 so 0 can still be used as exit button
             for (int i = 1; i < descriptions.Length; i++)
             {
                 if (commands[i] != null) // Check if the command is assigned
