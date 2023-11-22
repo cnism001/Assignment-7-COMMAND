@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Assignment_7_COMMAND
 {   
-    //interface for Execute method for all commands
+    // Interface for Execute method for all commands
     public interface ICommand
     {
         void Execute();
     }
-    //command to turn the light on
+    // Command to turn the light on
     public class TurnOnLightCommand : ICommand
     {
         private Light light;
@@ -27,7 +27,7 @@ namespace Assignment_7_COMMAND
             light.On();
         }
     }
-    //command to turn the light off, same logic as with light on
+    // Command to turn the light off, same logic as with light on
     public class TurnOffLightCommand : ICommand
     {
         private Light light;
@@ -73,6 +73,27 @@ namespace Assignment_7_COMMAND
         public void Execute()
         {
             thermostat.DecreaseTemperature();
+        }
+    }
+    // CompositeCommand class allows for executing multiple commands at once
+    public class CompositeCommand : ICommand
+    {
+        // List to hold all the commands added into the composite
+        private List<ICommand> commands = new List<ICommand>();
+
+        // Adds a command to the composite command
+        public void Add(ICommand command)
+        {
+            commands.Add(command);
+        }
+
+        // Execute all added commands
+        public void Execute()
+        {
+            foreach (var command in commands)
+            {
+                command.Execute();
+            }
         }
     }
 
